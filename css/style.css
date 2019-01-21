@@ -1,0 +1,24 @@
+:root {
+    --main-bg-color: #352a55;
+    --turquoise: #25fedf;
+    --yellow: #fed480;
+    --pink: #e8006d;   
+}
+body {
+    /* background: var(--main-bg-color); */
+}
+.main-h1 {
+    /* color: var(--turquoise);
+    font-family: 'Press Start 2P', cursive; */
+    margin: 0;
+    text-align: center;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+canvas {
+    border: 2px solid var(--turquoise);
+    /* box-shadow: 0px 0px 200px -20px rgba(37,254,221,0.75); */
+}
