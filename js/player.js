@@ -26,10 +26,11 @@ class Player {
         ctx.stroke()
     }
     // Update the information of the player for the next frame
-    update() {
+    update(myVar) {
         if (this.isMoving) {
             this.x += this.speed * Math.cos(this.angle)
-            this.y += this.speed * Math.sin(this.angle)   
+            this.y += this.speed * Math.sin(this.angle)
+            clearInterval(myVar)   
         }
     }
     move() {
@@ -43,14 +44,16 @@ class Player {
     }
     stop() {
         let that = this
-        for (let i = 0; i < 10; i++){
-            setTimeout(function(){
+        for (let i = 0; i < this.speed*10; i++){
+            var myVar = setTimeout(function(){
                 that.speed -= 0.1
                 console.log(that.speed)
             }, i*50)
             }
-        this.speed = 2
-        this.isMoving = false
+        setTimeout(function(){
+        that.speed = 2
+        that.isMoving = false
+        }, 1000)    
     }
 }
 
