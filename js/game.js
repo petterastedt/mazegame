@@ -1,7 +1,7 @@
 class Game {
     constructor() {
         this.player = new Player(100,200) // To test
-        this.timeLeft = 'Time left: 00:25'
+        this.timeLeft = 10
     }
     // We need to draw everything related to the game
     draw(ctx) {
@@ -9,7 +9,14 @@ class Game {
         this.player.draw(ctx)
     }
     displayTimeLeft(){
-        test.innerHTML = this.timeLeft
+        let timeleft = this.timeLeft
+        let timer = setInterval(function(){
+        test.innerHTML = timeleft -= 1
+        if(timeleft <= 0) {
+        test.innerHTML = 'Time is up!'   
+        clearInterval(timer)
+        }
+        },1000);
     }
     // We need to update everything related to the game
     update() {

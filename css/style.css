@@ -20,5 +20,5 @@ body {
 }
 canvas {
     border: 2px solid var(--turquoise);
-    /* box-shadow: 0px 0px 200px -20px rgba(37,254,221,0.75); */
+    /* box-shadow: 0px 0px 100px -20px rgba(37,254,221,0.75); */
 }

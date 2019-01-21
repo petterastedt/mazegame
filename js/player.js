@@ -26,11 +26,10 @@ class Player {
         ctx.stroke()
     }
     // Update the information of the player for the next frame
-    update(myVar) {
+    update() {
         if (this.isMoving) {
             this.x += this.speed * Math.cos(this.angle)
-            this.y += this.speed * Math.sin(this.angle)
-            clearInterval(myVar)   
+            this.y += this.speed * Math.sin(this.angle) 
         }
     }
     move() {
@@ -43,17 +42,16 @@ class Player {
         this.angle -= 0.1 // Turning sensitivity
     }
     stop() {
-        let that = this
-        for (let i = 0; i < this.speed*10; i++){
-            var myVar = setTimeout(function(){
-                that.speed -= 0.1
-                console.log(that.speed)
-            }, i*50)
-            }
-        setTimeout(function(){
-        that.speed = 2
-        that.isMoving = false
-        }, 1000)    
+       let that = this
+       let myVar = setInterval(() => {
+           if (that.speed < 0.2){
+               that.speed = 2
+               that.isMoving = false
+               clearInterval(myVar)
+               console.log('interval cleared, values restored')
+           } else {
+           that.speed-=0.2
+           }
+       }, 200)
     }
 }
-
