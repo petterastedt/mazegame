@@ -1,13 +1,14 @@
 const canvas = document.querySelector('canvas'),
 ctx = canvas.getContext('2d'),
-test = document.querySelector('.main-h1')
-game = new Game()
+test = document.querySelector('.main-h1'),
+game = new Game(),
+scale = 'scale(0.9)' // sets correct scale      
 
 start()
 
 function start() {
-    game.update();
-    game.draw(ctx);
+    game.update()
+    game.draw(ctx)
     window.requestAnimationFrame(start)
 } 
 
@@ -28,9 +29,10 @@ function keyListener(event) {
     } 
     if (event.keyCode === 32) { // Space
         if (isKeydown === false) {
-            game.displayTimeLeft(test)
+            game.displayTime(test)
         }
     }
 }
 window.addEventListener('keydown', keyListener)
 window.addEventListener('keyup', keyListener)
+document.body.style.transform = scale;    

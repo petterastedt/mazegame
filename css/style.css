@@ -4,13 +4,17 @@
     --yellow: #fed480;
     --pink: #e8006d;   
 }
+@font-face {
+    font-family: 'PressStart2P-Regular';
+    src: url('../font/PressStart2P-Regular.ttf');
+}
 body {
-    /* background: var(--main-bg-color); */
+    background: var(--main-bg-color);
 }
 .main-h1 {
     /* color: var(--turquoise);
     font-family: 'Press Start 2P', cursive; */
-    margin: 0;
+    margin: 0; /*set  to 20 */
     text-align: center;
 }
 .container {
@@ -22,3 +26,47 @@ canvas {
     border: 2px solid var(--turquoise);
     /* box-shadow: 0px 0px 100px -20px rgba(37,254,221,0.75); */
 }
+/* @keyframes blink {
+    0% {border-color: var(--turquoise);}
+    50% {border-color: var(--pink);}
+    100% {border-color: var(--turquoise);}
+}
+.container, .container::before, .container::after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+.container {
+    width: 500px;
+    height: 500px;
+    margin: 80px auto;
+    color: #69ca62;
+    box-shadow: inset 0 0 0 1px rgba(105, 202, 98, 0.5);
+  }
+@keyframes boxAnimation {
+    0%,
+    100% {
+      clip: rect(0px, 550px, 5px, 0px);
+    }
+    25% {
+      clip: rect(0px, 5px, 550px, 0px);
+    }
+    50% {
+      clip: rect(545px, 550px, 550px, 0px);
+    }
+    75% {
+      clip: rect(0px, 550px, 550px, 545px);
+    }
+  }
+.container::before, .container::after {
+    content: "";
+    z-index: -1;
+    margin: -5%;
+    box-shadow: inset 0 0 0 2px;
+    animation: boxAnimation 8s linear infinite;
+  }
+.container::before {
+    animation-delay: -4s;
+  } */
