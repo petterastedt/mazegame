@@ -1,8 +1,8 @@
 const canvas = document.querySelector('canvas'),
 ctx = canvas.getContext('2d'),
-test = document.querySelector('.main-h1'),
 game = new Game(),
-scale = 'scale(0.9)' // sets correct scale      
+scale = 'scale(0.9)', // sets correct scale  
+winSong = new Audio('../audio/win.mp3')    
 
 start()
 
@@ -29,7 +29,9 @@ function keyListener(event) {
     } 
     if (event.keyCode === 32) { // Space
         if (isKeydown === false) {
-            game.displayTime(test)
+            game.player.x = 30
+            game.player.y = 30
+            
         }
     }
 }

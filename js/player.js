@@ -23,7 +23,6 @@ class Player {
             ctx.font = '12px PressStart2P-Regular'
             ctx.fillText('(press space to restart)',110,280)
         }
-        
         // Draw character
         ctx.beginPath()
         ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false)
@@ -62,6 +61,6 @@ class Player {
            } else {
             this.speed *= 0.9
            }
-       }, 1000/50)
+       }, 1000/100)
      }
 }
