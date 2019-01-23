@@ -1,5 +1,19 @@
 class Level {
     constructor() {
+        this.hitDetectionArray = [
+            { name: "obj1", x: 10, y: 10, w: 480, h: 40 },
+            { name: "obj2", x: 450, y: 40, w: 40, h: 90 },
+            { name: "obj3", x: 350, y: 100, w: 100, h: 30 },
+            { name: "obj4", x: 290, y: 130, w: 90, h: 30 },
+            { name: "obj5", x: 230, y: 100, w: 90, h: 30 },
+            { name: "obj6", x: 170, y: 130, w: 90, h: 30 },
+            { name: "obj7", x: 110, y: 100, w: 90, h: 30 },
+            { name: "obj8", x: 50, y: 130, w: 90, h: 40 },
+            { name: "obj9", x: 10, y: 130, w: 60, h: 290 },
+            { name: "obj10", x: 60, y: 330, w: 430, h: 40 },
+            { name: "obj11", x: 430, y: 330, w: 40, h: 160 }
+          ];
+        //let object = this.hitDetectionArray.filter(obj => obj.name === "obj1");
     }
     drawLevel (){
         // End of maze reached
@@ -13,19 +27,20 @@ class Level {
         }
         // Intro text / reset
         if (game.player.x == 30 && game.player.y == 30) {
+            winSong.pause()
             ctx.font = '12px PressStart2P-Regular'
-            ctx.fillText('Level 1: Get out of the maze ',90,200)
-            ctx.fillText('before the timer runs out.',90,220) 
-            ctx.fillText('Remember: what seems to be easy',90,240) 
-            ctx.fillText('sections of the map might have',90,260)
-            ctx.fillText('some uncomfortable surprises.',90,280)
-            ctx.fillText('Press SPACE to start. Good Luck!',90,300)
+            ctx.fillText('Level 1: Get out of the maze ',90,205)
+            ctx.fillText('before the timer runs out.',90,225) 
+            ctx.fillText('Remember: what seems to be easy',90,245) 
+            ctx.fillText('sections of the map might have',90,265)
+            ctx.fillText('some uncomfortable surprises.',90,285)
+            ctx.fillText('Press SPACE to start. Good Luck!',90,305)
         }
         if (game.player.x + game.player.radius > 60) {
             // TODO: start timer/game
         }
         // Draw level
-        ctx.fillStyle = "#fed480"
+        ctx.fillStyle = "#fed480" // level color
         // (posx,posy,size,size)
         ctx.fillRect(10,10,480,40) // top
         ctx.fillRect(450,40,40,90) // first turn
@@ -37,6 +52,7 @@ class Level {
         ctx.fillRect(50,130,90,40) // last part of second floor
         ctx.fillRect(10,130,60,290) // gravity party
         // TODO: create knives here
+       
         ctx.fillRect(60,330,430,40)
         // TODO: create ostcables appearing and disapearing + black out
         ctx.fillRect(430,330,40,160) 
@@ -44,5 +60,13 @@ class Level {
         ctx.font = '18px PressStart2P-Regular'
         ctx.fillText('V',442,480)
         ctx.fillStyle = "#f4f4f4"
+        
+        this.collisionDetection()
+    }
+    collisionDetection() {
+        let lvlObject = this.hitDetectionArray.filter(obj => obj.name === "obj1")
+        if (game.player.y + game.player.radius < lvlObject[0].h || game.player.x + game.player.radius > lvlObject[0].w) {
+            console.log('outside of box!')
+        }
     }
 }

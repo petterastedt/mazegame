@@ -15,23 +15,25 @@ function start() {
 // KEYDOWN CONTROLS
 function keyListener(event) {
     let isKeydown = event.type === 'keydown' // The value is true or false
-    if (event.keyCode === 39) { // Right
-        game.player.moveRight()
+    if (event.keyCode === 39 && isKeydown) { // Right
+        game.player.rotate("right")
     } 
-    if (event.keyCode === 37) { // Left
-        game.player.moveLeft()
+    else if (event.keyCode === 37 && isKeydown) { // Left
+        game.player.rotate("left")
     } 
-    if (event.keyCode === 38) { // Up
+    else if (event.keyCode === 37 || event.keyCode === 39) {
+        game.player.rotateStop()
+    }
+    else if (event.keyCode === 38) { // Up
         if (isKeydown) 
-            game.player.move()
+            game.player.accelerate()
         else 
             game.player.stop()
     } 
-    if (event.keyCode === 32) { // Space
+    else if (event.keyCode === 32) { // Space
         if (isKeydown === false) {
             game.player.x = 30
             game.player.y = 30
-            
         }
     }
 }

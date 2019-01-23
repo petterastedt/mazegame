@@ -8,7 +8,7 @@ class Game {
     // We need to draw everything related to the game
     draw(ctx) {
         ctx.clearRect(0,0,canvas.width,canvas.height)
-        // this.level.drawLevel()
+        this.level.drawLevel()
         this.player.draw(ctx)
     }
     displayTime(){
@@ -28,13 +28,15 @@ class Game {
             ctx.fillText('Time is up!',120,250)
             this.timerInvoked=false;
         }
-
     }
-    startGame () {
+    gameStart () {
 
     }
     gameEnd() {
 
+    }
+    gameReset() {
+        
     }
     // We need to update everything related to the game
     update() {

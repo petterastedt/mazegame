@@ -1,3 +1,13 @@
+/* alternative:
+--main-bg-color: #212121
+--lighter-grey: #777777
+--light-grey: #3d3d3d
+--text-color: #eeeeee;
+--green: #23ea55
+--
+
+*/
+
 :root {
     --main-bg-color: #352a55;
     --turquoise: #25fedf;
@@ -9,12 +19,12 @@
     src: url('../font/PressStart2P-Regular.ttf');
 }
 body {
-    /* background: var(--main-bg-color); */
+    background: var(--main-bg-color);
 }
 .main-h1 {
-    /* color: var(--turquoise);
-    font-family: 'Press Start 2P', cursive; */
-    margin: 0; /*set  to 20 */
+    color: var(--turquoise);
+    font-family: 'Press Start 2P', cursive;
+    margin:20px 0; /*set  to 20 */
     text-align: center;
 }
 .container {
@@ -24,7 +34,7 @@ body {
 }
 canvas {
     border: 2px solid var(--turquoise);
-    /* box-shadow: 0px 0px 100px -20px rgba(37,254,221,0.75); */
+    box-shadow: 0px 0px 100px -20px rgba(37,254,221,0.75);
 }
 .highscore {
     display: none;

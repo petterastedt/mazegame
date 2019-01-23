@@ -4,8 +4,9 @@ class Player {
         this.y = y
         this.radius = 10
         this.angle = 0
-        this.isMoving = false
-        this.speed = 2
+        this.vAngle = 0
+        this.isAccelerating = false
+        this.speed = 0
     }
     draw(ctx) {
         // Game over
@@ -35,32 +36,32 @@ class Player {
     }
     // Update the information of the player for the next frame
     update() {
-        if (this.isMoving) {
-            this.x += this.speed * Math.cos(this.angle)
-            this.y += this.speed * Math.sin(this.angle) 
+        if (this.isAccelerating) {
+            this.speed = 2
         }
+        else {
+            this.speed *= 0.7 // The closer to 1, the slipperier is the player
+        }
+        this.x += this.speed * Math.cos(this.angle)
+        this.y += this.speed * Math.sin(this.angle) 
+        this.angle += this.vAngle
     }
-    move(myVar) {
-        clearInterval(myVar)
-        this.isMoving = true
+    accelerate(myVar) {
+        this.isAccelerating = true
+    }
+    rotate(direction) {
+        this.vAngle = direction === "left" ? -0.03 : 0.03
+    }
+    rotateStop() {
+        this.vAngle = 0
     }
     moveRight() {
-        this.angle += 0.1 // Turning sensitivity
+        this.angle += 0.2 // Turning sensitivity
     }
     moveLeft() {
-        this.angle -= 0.1 // Turning sensitivity
+        this.angle -= 0.2 // Turning sensitivity
     }
     stop() {
-       let that = this
-       let myVar = setInterval(() => { 
-               if (that.speed < 0.1){
-               this.isMoving = false
-               that.speed = 2
-               clearInterval(myVar)
-               console.log('interval cleared, values restored')
-           } else {
-            this.speed *= 0.9
-           }
-       }, 1000/100)
+        this.isAccelerating = false
      }
 }
