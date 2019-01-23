@@ -2,10 +2,16 @@ const canvas = document.querySelector('canvas'),
 ctx = canvas.getContext('2d'),
 game = new Game(),
 scale = 'scale(0.9)', // sets correct scale  
-winSong = new Audio('../audio/win.mp3')    
+winSong = new Audio('../audio/win.mp3'),
+introScreen = document.querySelector('.intro-screen'),
+btn = document.querySelector('.btn')    
 
+// btn.addEventListener('click', function(){
+//     introScreen.style.display = "none"
+//     canvas.style.animation = "none"
+//     start()
+// })
 start()
-
 function start() {
     game.update()
     game.draw(ctx)
@@ -32,8 +38,7 @@ function keyListener(event) {
     } 
     else if (event.keyCode === 32) { // Space
         if (isKeydown === false) {
-            game.player.x = 30
-            game.player.y = 30
+            game.gameReset()
         }
     }
 }

@@ -9,21 +9,6 @@ class Player {
         this.speed = 0
     }
     draw(ctx) {
-        // Game over
-        if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
-            canvas.style.animation = 'blink .5s infinite'
-            ctx.font = '30px PressStart2P-Regular'
-            ctx.fillText('Game over',120,250)
-            ctx.font = '12px PressStart2P-Regular'
-            ctx.fillText('(press space to restart)',110,280)
-        }
-        if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
-            canvas.style.animation = 'blink .5s infinite'
-            ctx.font = '30px PressStart2P-Regular'
-            ctx.fillText('Game over',120,250)
-            ctx.font = '12px PressStart2P-Regular'
-            ctx.fillText('(press space to restart)',110,280)
-        }
         // Draw character
         ctx.beginPath()
         ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false)

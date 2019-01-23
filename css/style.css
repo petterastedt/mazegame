@@ -24,6 +24,7 @@ body {
 .main-h1 {
     color: var(--turquoise);
     font-family: 'Press Start 2P', cursive;
+    font-size: 30px;
     margin:20px 0; /*set  to 20 */
     text-align: center;
 }
@@ -32,9 +33,44 @@ body {
     justify-content: center;
     width: 100%;
 }
-canvas {
+/* .intro-screen {
     border: 2px solid var(--turquoise);
-    box-shadow: 0px 0px 100px -20px rgba(37,254,221,0.75);
+    background: var(--main-bg-color);
+    color: var(--turquoise);
+    font-family: 'Press Start 2P', cursive;
+    height: 500px;
+    position: absolute;
+    opacity: 1;
+    text-align: center;
+    width: 500px;
+    z-index: 2;
+}
+.intro-screen h2 {
+    font-size: 22px;
+}
+.intro-screen p {
+    font-size: 16px;
+}
+.btn {
+    animation: rotateBtn 4s infinite;
+    border: 2px solid var(--turquoise);
+    border-radius: 20px;
+    background: var(--main-bg-color);
+    color: var(--turquoise);
+    cursor: pointer;
+    margin: 220px 40px;
+    padding: 10px 20px;
+    transition: .5s all ease-in-out;
+}
+.btn:hover {
+    background: var(--turquoise);
+    color: var(--main-bg-color); 
+} */
+canvas {
+    /* animation: pulse 4s infinite; */
+    border: 2px solid var(--turquoise);
+    box-shadow: 0px 0px 120px -20px rgba(37,254,221,0.75);
+    z-index: 1;
 }
 .highscore {
     display: none;
@@ -52,10 +88,23 @@ canvas {
 .highscore h2 {
     text-align: center;
 }
+@keyframes rotateBtn {
+    0% {transform: rotate(0deg);}
+    20% {transform: rotate(10deg);}
+    40% {transform: rotate(0deg);}
+    60% {transform: rotate(0deg);}
+    80% {transform: rotate(-10deg);}
+    100% {transform: rotate(0deg);}
+}
 @keyframes blink {
     0% {border-color: var(--turquoise);}
     50% {border-color: var(--pink);}
     100% {border-color: var(--turquoise);}
+}
+@keyframes pulse {
+    0% {box-shadow: 0px 0px 100px -20px rgba(37,254,221,0.75);}
+    50% {box-shadow: 0px 0px 100px -20px rgba(37,254,221,0.1);}
+    100% {box-shadow: 0px 0px 100px -20px rgba(37,254,221,0.95);}
 }
 /* .container, .container::before, .container::after {
     position: absolute;
