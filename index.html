@@ -10,28 +10,21 @@
     <title>MazeGame</title>
 </head>
 <body>
-    <h1 class="main-h1">MazeGame</h1>
+    <h1 class="main-h1">MazeGame v1.0</h1>
     <div class="container">
         <canvas width="500" height="500"></canvas>
-        <!-- <div class="intro-screen">
-            <h2>Welcome to MazeGame</h2>
-            <p>Press start to play!</p>
-            <button class="btn">Start</button>
-        </div> -->
-        <div class="highscore">
-            <h2>Highscore</h2>
-            <ul>
-            <li>AAA</li>
-            <li>AAA</li>
-            <li>BCD</li>
-            <li>BFG</li>
-            <li>BBQ</li>
-            <li>CPC</li>
-            <li>JHN</li>
-            <li>LVL</li>
-            <li>KEK</li>
-            <li>XXX</li>
-        </ul>
+        <div class="intro-screen">
+            <!-- <h2>Choose difficulty</h2> -->
+            <!-- <p>Press start to play!</p> -->
+            <div class ="img-container">
+            <img src="/img/mute-green.png" class="mute">
+            </div>
+            <button class="btn btn1" data-columns="easy">Easy</button>
+            <button class="btn" data-columns="medium">Medium</button>
+            <button class="btn" data-columns="hard">Hard</button>
+            <div class="signature">
+                <p>&copy; Petter Åstedt, Ironhack Berlin 2019</p>
+            </div>
         </div>
     </div>  
 </body>
@@ -43,8 +36,8 @@
 
 <!-- idea feature for maze game, lights out!
 tail of ball
-kinda done - countdown timer
-gravity pulls you down (obsticle underneath)
+done - countdown timer
+done - gravity pulls you down (obsticle underneath)
 moving obstacle
 working on it - highscore
 stop timer?

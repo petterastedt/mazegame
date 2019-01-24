@@ -20,49 +20,8 @@ class Level {
           ];
           this.levelColor = '#fed480'
           this.vColor = '#000'
-
     }
-    drawLevel (h1){
-         // Gravity party
-         if (game.player.y + game.player.radius > 170 && game.player.y + game.player.radius < 420 && game.player.x > 10 && game.player.x < 70) {
-            game.player.angle += 0.01
-            game.player.isAccelerating = true
-         }
-         // Stop character when leaving the area
-         if (game.player.y + game.player.radius > 330 && game.player.y + game.player.radius < 370 && game.player.x > 70 && game.player.x < 100) {
-            game.player.isAccelerating = false
-         }
-         // Lights out part
-         if (game.player.y + game.player.radius > 330 && game.player.y + game.player.radius < 370 && game.player.x + game.player.radius > 110 && game.player.x + game.player.radius < 480) {
-            console.log('lights out!')
-            this.lightsOut()
-         }
-         // End of maze reached
-         if (game.player.y + game.player.radius > 460 && game.player.y + game.player.radius < 500) {
-            let saveTime = game.timer //Log time left
-            canvas.style.animation = 'blink .3s infinite' //Add visual effect
-            game.timerStart = false // Stop timer from restarting
-            winSong.play(); // Play rockin' tune
-            game.gameEnd()
-            ctx.font = '30px PressStart2P-Regular'
-            ctx.fillText('You won!',140,250)
-            ctx.font = '11px PressStart2P-Regular'
-            ctx.fillText(`Level cleared in ${((60-saveTime))}s!`,150,280)
-        } else {
-
-        }
-        if (game.player.x > 29.9 && game.player.x < 31.0 && game.player.y > 29.9 && game.player.y < 31) {
-            ctx.font = '12px PressStart2P-Regular'
-            ctx.fillText('Level 1: Get out of the maze ',90,205)
-            ctx.fillText('before the timer runs out.',90,225) 
-            ctx.fillText('Remember: what seems to be easy',90,245) 
-            ctx.fillText('sections of the map might have',90,265)
-            ctx.fillText('some uncomfortable surprises.',90,285)
-            ctx.fillText('Press UP to start. Good Luck!',90,305)
-        } else {
-            game.timerStart = true
-        }
-        // Draw level
+    drawLevel (){
         ctx.fillStyle = this.levelColor
 
         ctx.fillRect(this.hitDetectionArray[0].x,this.hitDetectionArray[0].y,this.hitDetectionArray[0].w,this.hitDetectionArray[0].h)
@@ -82,15 +41,18 @@ class Level {
         ctx.fillRect(this.hitDetectionArray[14].x,this.hitDetectionArray[14].y,this.hitDetectionArray[14].w,this.hitDetectionArray[14].h)
         ctx.fillRect(this.hitDetectionArray[15].x,this.hitDetectionArray[15].y,this.hitDetectionArray[15].w,this.hitDetectionArray[15].h)
 
-        // TODO: create knives here
-       
-        ctx.fillRect(60,330,430,40)
         // TODO: create ostcables appearing and disapearing + black out
    
         ctx.fillStyle = this.vColor
         ctx.font = '18px PressStart2P-Regular'
-        ctx.fillText('V',442,480)
+        ctx.fillText('X',442,480) // End of maze symbol
         ctx.fillStyle = "#f4f4f4"
+
+        // Lava in bottom of gravity pit
+        ctx.save()
+        ctx.fillStyle = '#ff3a3a'
+        ctx.fillRect(10,410,60,10)
+        ctx.restore()
 
         if (
         this.hasHit(game.player,this.hitDetectionArray[0]) ||
@@ -119,6 +81,57 @@ class Level {
             ctx.fillText('(press space to restart)',110,280)
             game.gameEnd()
         }
+         // Gravity part
+         if (game.player.y + game.player.radius > 130 && game.player.y + game.player.radius < 169 && game.player.x > 10 && game.player.x < 70) {
+            ctx.font = '30px PressStart2P-Regular'
+            ctx.fillText('Watch out!',120,250)
+            ctx.font = '11px PressStart2P-Regular'
+            ctx.fillText('Gravity will pull you down',120,280)
+            ctx.save()    
+            ctx.fillStyle = '#000'
+            ctx.fillText('V',35,237)
+            ctx.fillText('V',35,257)
+            ctx.fillText('V',35,277)
+            ctx.restore()
+         }
+         if (game.player.y + game.player.radius > 170 && game.player.y + game.player.radius < 420 && game.player.x > 10 && game.player.x < 70) {
+            game.player.angle += 0.01
+            game.player.isAccelerating = true
+         }
+         // Stop character when leaving the area
+         if (game.player.y + game.player.radius > 330 && game.player.y + game.player.radius < 370 && game.player.x > 70 && game.player.x < 100) {
+            game.player.isAccelerating = false
+         }
+         // Lights out part
+         if (game.player.y + game.player.radius > 330 && game.player.y + game.player.radius < 370 && game.player.x + game.player.radius > 130 && game.player.x + game.player.radius < 480) {
+            this.lightsOut()
+         }
+         // End of maze reached
+         if (game.player.y + game.player.radius > 460 && game.player.y + game.player.radius < 500) {
+            let saveTime = game.timer //Log time left
+            canvas.style.animation = 'blink .3s infinite' //Add visual effect
+            game.timerStart = false // Stop timer from restarting
+            winSong.play(); // Play rockin' tune
+            winSong.volume = 0.3 // Lower volume
+            game.gameEnd()
+            ctx.font = '30px PressStart2P-Regular'
+            ctx.fillText('You won!',130,250)
+            ctx.font = '11px PressStart2P-Regular'
+            ctx.fillText(`Level cleared in ${((game.setTimer-saveTime))}s on ${((game.difficulty))}`,97,280)
+        } else {
+            // Intro text
+        }
+        if (game.player.x > 29.9 && game.player.x < 31.0 && game.player.y > 29.9 && game.player.y < 31) {
+            ctx.font = '12px PressStart2P-Regular'
+            ctx.fillText('Level 1: Get out of the maze ',90,205)
+            ctx.fillText('before the timer runs out.',90,225) 
+            ctx.fillText('Remember: what seems to be easy',90,245) 
+            ctx.fillText('sections of the map might have',90,265)
+            ctx.fillText('some uncomfortable surprises.',90,285)
+            ctx.fillText('Press UP to start. Good Luck!',90,305)
+        } else {
+            game.timerStart = true
+        }       
     }
     hasHit(box1, box2) {
         let box1Right = box1.x - box1.radius // TODO TWEAK NUMBERS
@@ -140,6 +153,8 @@ class Level {
         canvas.style.animation = 'pulse 6s infinite'
         ctx.font = '30px PressStart2P-Regular'
         ctx.fillText('Lights out!',105,260)
+        if (game.difficulty == 'hard')
+        game.player.playerDirInd = '#fff'
     }
     resetLightsOut() {
         this.levelColor = '#fed480'

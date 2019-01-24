@@ -1,11 +1,14 @@
 class Game {
     constructor() {
-        this.player = new Player(30,30)
+        this.player = new Player(30, 30)
         this.level = new Level()
         this.countDown = undefined
-        this.timer = 60
+        this.setTimer = 90
+        this.timer = this.setTimer
         this.timerInvoked = false
         this.timerStart = false
+        this.gameOver = false
+        this.difficulty = ''
     }
     draw(ctx) {
         ctx.clearRect(0,0,canvas.width,canvas.height)
@@ -39,6 +42,7 @@ class Game {
     gameEnd() {
         //Stop player (needs tweaking)
         this.player.stop()
+        this.gameOver = true
         //Clear timer interval
         clearInterval(game.countDown)
     }
@@ -49,9 +53,13 @@ class Game {
         canvas.style.animation = 'none'
         winSong.pause()
         game.timerStart = false
-        this.timer = 60
+        this.timer = this.setTimer
         clearInterval(this.countDown)
         this.level.resetLightsOut()
+        this.gameOver = false
+        game.player.rotateStop()
+        if (game.difficulty == 'hard')
+        game.player.playerDirInd = 'black'
     }
     // We need to update everything related to the game
     update() {

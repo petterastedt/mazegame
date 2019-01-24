@@ -3,16 +3,57 @@ ctx = canvas.getContext('2d'),
 game = new Game(),
 scale = 'scale(0.9)', // sets correct scale  
 winSong = new Audio('../audio/win.mp3'),
+introSong = new Audio('../audio/intro.mp3'),
 introScreen = document.querySelector('.intro-screen'),
-btn = document.querySelector('.btn'),
+btn = document.querySelectorAll('.btn'),
 body = document.querySelector('body'),
-h1 = document.querySelector('.main-h1')    
+mute = document.querySelector('.mute')    
 
-// btn.addEventListener('click', function(){
-//     introScreen.style.display = "none"
-//     canvas.style.animation = "none"
-//     start()
-// })
+
+let clicked = false
+mute.addEventListener('click',() => { 
+    if (clicked === false) {
+    introSong.play()
+    introSong.volume = 0.2
+    mute.src = '../img/volume.png'
+    clicked = true
+    }
+    else if (clicked === true) {
+    introSong.pause()
+    mute.src = '../img/mute-green.png'
+    clicked = false   
+    }
+    console.log(clicked)
+})
+
+btn.forEach(function (btns) {
+    btns.addEventListener('click', function(){
+        if (btns.dataset.columns == 'easy') {
+        console.log('easy!')
+        introScreen.style.display = 'none'
+        game.difficulty = btns.dataset.columns
+        game.setTimer = 120
+        game.timer = game.setTimer
+    }
+        if (btns.dataset.columns == 'medium') {
+        console.log('medium!')
+        introScreen.style.display = 'none'
+        game.difficulty = btns.dataset.columns
+        game.setTimer = 90
+        game.timer = game.setTimer
+    }
+        if (btns.dataset.columns == 'hard') {
+        console.log('hard!')
+        introScreen.style.display = 'none'
+        game.difficulty = btns.dataset.columns
+        game.player.playerColor = 'black'
+        game.player.playerDirInd = 'black'
+        game.setTimer = 60
+        game.timer = game.setTimer
+    }
+    introSong.pause()
+    })
+})
 start()
 function start() {
     game.update()
@@ -23,6 +64,12 @@ function start() {
 // KEYDOWN CONTROLS
 function keyListener(event) {
     let isKeydown = event.type === 'keydown' // The value is true or false
+    if (event.keyCode === 32) { // Space
+        if (isKeydown === false) {
+            game.gameReset()
+        }
+    }
+    if (!game.gameOver){
     if (event.keyCode === 39 && isKeydown) { // Right
         game.player.rotate("right")
     } 
@@ -34,15 +81,19 @@ function keyListener(event) {
     }
     else if (event.keyCode === 38) { // Up
         if (isKeydown) 
-            game.player.accelerate()
+            game.player.accelerate()  
         else 
             game.player.stop()
     } 
-    else if (event.keyCode === 32) { // Space
-        if (isKeydown === false) {
-            game.gameReset()
-        }
+    else if (event.keyCode === 49) {
+        game.player.y = 150
+        game.player.x = 40
     }
+    else if (event.keyCode === 50) {
+        game.player.y = 350
+        game.player.x = 90
+    }        
+ }
 }
 window.addEventListener('keydown', keyListener)
 window.addEventListener('keyup', keyListener)

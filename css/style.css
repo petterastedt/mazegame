@@ -5,9 +5,7 @@
 --text-color: #eeeeee;
 --green: #23ea55
 --
-
 */
-
 :root {
     --main-bg-color: #352a55;
     --turquoise: #25fedf;
@@ -20,12 +18,13 @@
 }
 body {
     background: var(--main-bg-color);
+    color: var(--turquoise);
+    font-family: 'Press Start 2P', cursive;
 }
 .main-h1 {
     color: var(--turquoise);
-    font-family: 'Press Start 2P', cursive;
     font-size: 30px;
-    margin:20px 0; /*set  to 20 */
+    margin: 10px 0 30px 0;
     text-align: center;
 }
 .container {
@@ -33,12 +32,14 @@ body {
     justify-content: center;
     width: 100%;
 }
-/* .intro-screen {
+.intro-screen {
     border: 2px solid var(--turquoise);
     background: var(--main-bg-color);
     color: var(--turquoise);
-    font-family: 'Press Start 2P', cursive;
+    display: flex;
+    flex-direction: column;
     height: 500px;
+    justify-content: center;
     position: absolute;
     opacity: 1;
     text-align: center;
@@ -46,55 +47,68 @@ body {
     z-index: 2;
 }
 .intro-screen h2 {
-    font-size: 22px;
+    font-size: 14px;
+    margin-bottom: 60px;
 }
 .intro-screen p {
     font-size: 16px;
 }
+.img-container {
+    left: 220px;
+    position: relative;
+    top: -103px;
+}
+.mute {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    transition: .05s all ease-in-out;
+}
+.mute:active {
+    transform: scale(0.9)
+}
 .btn {
-    animation: rotateBtn 4s infinite;
     border: 2px solid var(--turquoise);
     border-radius: 20px;
     background: var(--main-bg-color);
     color: var(--turquoise);
     cursor: pointer;
-    margin: 220px 40px;
+    font-size: 12px;
+    margin: 20px auto;
     padding: 10px 20px;
-    transition: .5s all ease-in-out;
+    transition: .2s all ease-in-out;
+    width: 110px;
 }
 .btn:hover {
     background: var(--turquoise);
     color: var(--main-bg-color); 
-} */
+}
+.btn:active {
+    transform: scale(0.8)
+}
+.btn1 {
+    margin-top: 0;
+}
 canvas {
     /* animation: pulse 4s infinite; */
     border: 2px solid var(--turquoise);
     box-shadow: 0px 0px 120px -20px rgba(37,254,221,0.75);
-    z-index: 1;
+    z-index: -1;
 }
-.highscore {
-    display: none;
-    background: var(--main-bg-color);
-    box-shadow: 0px 0px 100px -20px rgba(37,254,221,0.75);
-    color: var(--turquoise);
-    font-family: 'Press Start 2P', cursive;
-    height: 500px;
-    margin-left: 50px;
+.signature {
+    margin: 0 auto;
+    text-align: center;
     width: 500px;
 }
-.highscore ul {
-    list-style: none;
+.signature p {
+    font-size: 6px;
+    padding: 5px;
+    position: relative;
+    top: 105px;
 }
-.highscore h2 {
-    text-align: center;
-}
-@keyframes rotateBtn {
-    0% {transform: rotate(0deg);}
-    20% {transform: rotate(10deg);}
-    40% {transform: rotate(0deg);}
-    60% {transform: rotate(0deg);}
-    80% {transform: rotate(-10deg);}
-    100% {transform: rotate(0deg);}
+@keyframes move {
+    0% {left: 200px;}
+    100% {left: 0;}
 }
 @keyframes blink {
     0% {border-color: var(--turquoise);}
