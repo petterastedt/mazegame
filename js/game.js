@@ -1,13 +1,12 @@
 class Game {
     constructor() {
-        this.player = new Player(30,30) // To test
+        this.player = new Player(30,30)
         this.level = new Level()
         this.countDown = undefined
         this.timer = 60
         this.timerInvoked = false
         this.timerStart = false
     }
-    // We need to draw everything related to the game
     draw(ctx) {
         ctx.clearRect(0,0,canvas.width,canvas.height)
         this.level.drawLevel()
@@ -15,7 +14,6 @@ class Game {
         this.player.draw(ctx)
     }
     displayTime() {
-        //Time 
         if (this.timerStart === true) {
             if (this.timer >= 0){
                 if (!this.timerInvoked){
@@ -51,7 +49,9 @@ class Game {
         canvas.style.animation = 'none'
         winSong.pause()
         game.timerStart = false
+        this.timer = 60
         clearInterval(this.countDown)
+        this.level.resetLightsOut()
     }
     // We need to update everything related to the game
     update() {

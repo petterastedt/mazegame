@@ -4,7 +4,9 @@ game = new Game(),
 scale = 'scale(0.9)', // sets correct scale  
 winSong = new Audio('../audio/win.mp3'),
 introScreen = document.querySelector('.intro-screen'),
-btn = document.querySelector('.btn')    
+btn = document.querySelector('.btn'),
+body = document.querySelector('body'),
+h1 = document.querySelector('.main-h1')    
 
 // btn.addEventListener('click', function(){
 //     introScreen.style.display = "none"

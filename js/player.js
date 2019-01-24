@@ -7,16 +7,24 @@ class Player {
         this.vAngle = 0
         this.isAccelerating = false
         this.speed = 0
+        this.playerColor = '#000'
+        this.playerOutlineColor = '#e8006d'
     }
     draw(ctx) {
         // Draw character
+        ctx.save()
         ctx.beginPath()
         ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false)
+        ctx.fillStyle = this.playerColor
+        ctx.strokeStyle = this.playerOutlineColor
+        ctx.fill()
         ctx.stroke()
+        ctx.restore()
 
         ctx.beginPath()
         ctx.moveTo(this.x,this.y)
         ctx.lineTo(this.x+this.radius*Math.cos(this.angle),this.y+this.radius*Math.sin(this.angle))
+        ctx.strokeStyle = "#ffffff"
         ctx.stroke()
     }
     // Update the information of the player for the next frame
@@ -25,14 +33,14 @@ class Player {
             this.speed = 2
         }
         else {
-            this.speed *= 0.7 // The closer to 1, the slipperier is the player
+            this.speed *= 0.8 // The closer to 1, the slipperier is the player
         }
         this.x += this.speed * Math.cos(this.angle)
         this.y += this.speed * Math.sin(this.angle) 
         this.angle += this.vAngle
     }
-    accelerate(myVar) {
-        this.isAccelerating = true
+    accelerate() {
+            this.isAccelerating = true
     }
     rotate(direction) {
         this.vAngle = direction === "left" ? -0.03 : 0.03
