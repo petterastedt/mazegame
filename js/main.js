@@ -2,48 +2,45 @@ const canvas = document.querySelector('canvas'),
 ctx = canvas.getContext('2d'),
 game = new Game(),
 scale = 'scale(0.9)', // sets correct scale  
-winSong = new Audio('../audio/win.mp3'),
-introSong = new Audio('../audio/intro.mp3'),
+winSong = new Audio('audio/win.mp3'),
+introSong = new Audio('audio/intro.mp3'),
+alert = new Audio('audio/alert.mp3'),
 introScreen = document.querySelector('.intro-screen'),
 btn = document.querySelectorAll('.btn'),
 body = document.querySelector('body'),
 mute = document.querySelector('.mute')    
 
-
+// Intro screen click functions
 let clicked = false
 mute.addEventListener('click',() => { 
     if (clicked === false) {
     introSong.play()
     introSong.volume = 0.2
-    mute.src = '../img/volume.png'
+    mute.src = 'img/volume.png'
     clicked = true
     }
     else if (clicked === true) {
     introSong.pause()
-    mute.src = '../img/mute-green.png'
+    mute.src = 'img/mute-green.png'
     clicked = false   
     }
-    console.log(clicked)
 })
 
 btn.forEach(function (btns) {
     btns.addEventListener('click', function(){
         if (btns.dataset.columns == 'easy') {
-        console.log('easy!')
         introScreen.style.display = 'none'
         game.difficulty = btns.dataset.columns
         game.setTimer = 120
         game.timer = game.setTimer
     }
         if (btns.dataset.columns == 'medium') {
-        console.log('medium!')
         introScreen.style.display = 'none'
         game.difficulty = btns.dataset.columns
         game.setTimer = 90
         game.timer = game.setTimer
     }
         if (btns.dataset.columns == 'hard') {
-        console.log('hard!')
         introScreen.style.display = 'none'
         game.difficulty = btns.dataset.columns
         game.player.playerColor = 'black'
@@ -54,6 +51,7 @@ btn.forEach(function (btns) {
     introSong.pause()
     })
 })
+//Start game on page load
 start()
 function start() {
     game.update()
@@ -61,7 +59,7 @@ function start() {
     window.requestAnimationFrame(start)
 } 
 
-// KEYDOWN CONTROLS
+// Keyboard controls
 function keyListener(event) {
     let isKeydown = event.type === 'keydown' // The value is true or false
     if (event.keyCode === 32) { // Space
@@ -87,7 +85,7 @@ function keyListener(event) {
     } 
     else if (event.keyCode === 49) {
         game.player.y = 150
-        game.player.x = 40
+        game.player.x = 90
     }
     else if (event.keyCode === 50) {
         game.player.y = 350

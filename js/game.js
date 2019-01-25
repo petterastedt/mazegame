@@ -36,11 +36,8 @@ class Game {
         this.timerInvoked = false
         }
     }
-    gameStart () {
-
-    }
     gameEnd() {
-        //Stop player (needs tweaking)
+        //Stop player
         this.player.stop()
         this.gameOver = true
         //Clear timer interval

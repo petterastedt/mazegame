@@ -82,7 +82,8 @@ class Level {
             game.gameEnd()
         }
          // Gravity part
-         if (game.player.y + game.player.radius > 130 && game.player.y + game.player.radius < 169 && game.player.x > 10 && game.player.x < 70) {
+         if (game.player.y + game.player.radius > 130 && game.player.y + game.player.radius < 169 && 
+            game.player.x > 10 && game.player.x < 70) {
             ctx.font = '30px PressStart2P-Regular'
             ctx.fillText('Watch out!',120,250)
             ctx.font = '11px PressStart2P-Regular'
@@ -94,16 +95,19 @@ class Level {
             ctx.fillText('V',35,277)
             ctx.restore()
          }
-         if (game.player.y + game.player.radius > 170 && game.player.y + game.player.radius < 420 && game.player.x > 10 && game.player.x < 70) {
+         if (game.player.y + game.player.radius > 170 && game.player.y + game.player.radius < 420
+            && game.player.x > 10 && game.player.x < 70) {
             game.player.angle += 0.01
             game.player.isAccelerating = true
          }
          // Stop character when leaving the area
-         if (game.player.y + game.player.radius > 330 && game.player.y + game.player.radius < 370 && game.player.x > 70 && game.player.x < 100) {
+         if (game.player.y + game.player.radius > 330 && game.player.y + game.player.radius < 370 && 
+            game.player.x > 70 && game.player.x < 100) {
             game.player.isAccelerating = false
          }
          // Lights out part
-         if (game.player.y + game.player.radius > 330 && game.player.y + game.player.radius < 370 && game.player.x + game.player.radius > 130 && game.player.x + game.player.radius < 480) {
+         if (game.player.y + game.player.radius > 330 && game.player.y + game.player.radius < 370 && 
+            game.player.x + game.player.radius > 130 && game.player.x + game.player.radius < 480) {
             this.lightsOut()
          }
          // End of maze reached
@@ -119,7 +123,7 @@ class Level {
             ctx.font = '11px PressStart2P-Regular'
             ctx.fillText(`Level cleared in ${((game.setTimer-saveTime))}s on ${((game.difficulty))}`,97,280)
         } else {
-            // Intro text
+         // Intro text
         }
         if (game.player.x > 29.9 && game.player.x < 31.0 && game.player.y > 29.9 && game.player.y < 31) {
             ctx.font = '12px PressStart2P-Regular'
@@ -134,8 +138,8 @@ class Level {
         }       
     }
     hasHit(box1, box2) {
-        let box1Right = box1.x - box1.radius // TODO TWEAK NUMBERS
-        let box1Bottom = box1.y - box1.radius // TODO TWEAK NUMBERS
+        let box1Right = box1.x - box1.radius
+        let box1Bottom = box1.y - box1.radius
         let box2Right = box2.x + box2.w - box1.radius
         let box2Bottom = box2.y + box2.h - box1.radius 
   
