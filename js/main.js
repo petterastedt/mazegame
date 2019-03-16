@@ -4,7 +4,6 @@ game = new Game(),
 scale = 'scale(0.9)', // sets correct scale  
 winSong = new Audio('audio/win.mp3'),
 introSong = new Audio('audio/intro.mp3'),
-alert = new Audio('audio/alert.mp3'),
 introScreen = document.querySelector('.intro-screen'),
 btn = document.querySelectorAll('.btn'),
 body = document.querySelector('body'),
@@ -26,21 +25,21 @@ mute.addEventListener('click',() => {
     }
 })
 
-btn.forEach(function (btns) {
-    btns.addEventListener('click', function(){
+btn.forEach(btns => {
+    btns.addEventListener('click', () => {
         if (btns.dataset.columns == 'easy') {
         introScreen.style.display = 'none'
         game.difficulty = btns.dataset.columns
         game.setTimer = 120
         game.timer = game.setTimer
     }
-        if (btns.dataset.columns == 'medium') {
+        if (btns.dataset.columns === 'medium') {
         introScreen.style.display = 'none'
         game.difficulty = btns.dataset.columns
         game.setTimer = 90
         game.timer = game.setTimer
     }
-        if (btns.dataset.columns == 'hard') {
+        if (btns.dataset.columns === 'hard') {
         introScreen.style.display = 'none'
         game.difficulty = btns.dataset.columns
         game.player.playerColor = 'black'
